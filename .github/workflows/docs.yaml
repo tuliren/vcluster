@@ -68,3 +68,7 @@ jobs:
             netlify deploy --auth=$NETLIFY_ACCESS_TOKEN --site=$NETLIFY_SITE_ID --dir=$OUT_DIR --prod
           fi
         working-directory: ./docs
+
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()

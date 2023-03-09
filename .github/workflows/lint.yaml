@@ -32,3 +32,8 @@ jobs:
             -v
             --config=.golangci.yml
             --max-same-issues=50
+
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()
+
