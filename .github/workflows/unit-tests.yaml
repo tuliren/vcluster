@@ -29,3 +29,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Execute unit tests
         run: ./hack/test.sh
+
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()
+

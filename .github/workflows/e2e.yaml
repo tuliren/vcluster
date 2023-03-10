@@ -46,6 +46,11 @@ jobs:
           path: ./vcluster_syncer
           retention-days: 7
 
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()
+
+
   build-vcluster-cli:
     runs-on: ubuntu-latest
     steps:
@@ -66,6 +71,11 @@ jobs:
           path: ./vcluster
           retention-days: 7
 
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()
+
+
   get-testsuites-dir:
     runs-on: ubuntu-latest
     steps:
@@ -77,6 +87,11 @@ jobs:
           sudo apt-get install -y jq
           paths=$(ls -d ./test/e2e*)
           echo "::set-output name=matrix::$(printf '%s\n' "${paths}" | jq -R . | jq -cs .)"
+
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()
+
     outputs:
       matrix: ${{ steps.set-paths-matrix.outputs.matrix }}
 
@@ -217,3 +232,8 @@ jobs:
         echo "======================================================================================================================"
         kubectl describe pods -n ${{ env.VCLUSTER_NAMESPACE }}
         exit 1
+
+    - name: Run Stoat Action
+      uses: stoat-dev/stoat-action@v0
+      if: always()
+
